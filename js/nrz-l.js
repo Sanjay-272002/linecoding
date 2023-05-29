@@ -36,13 +36,14 @@ function drawAxes() {
     ctx.lineTo(10, 330);
     ctx.strokeStyle = "black";
     ctx.stroke();
-
+    ctx.closePath();
     // Horizontal line
     ctx.moveTo(10, 330);
     ctx.lineTo(canvas_width, 330);
     ctx.strokeStyle = "black";
     ctx.stroke();
-    ctx.beginPath();
+    ctx.closePath();
+    
     // Vertical line
     // ctx.moveTo(canvas_width/2, 10);           
     // ctx.lineTo(canvas_width/2, 330);
@@ -60,18 +61,76 @@ function drawAxes() {
     // ctx.lineTo(canvas_width - 50, (line_start + line_end) / 2);
     // ctx.strokeStyle = "black";
     // ctx.stroke();
-
+    ctx.save();
+    ctx.beginPath();
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
     ctx.fillText("Amplitude",  20, 20, 90);
     ctx.fillText("Time", canvas_width - 100, 350, 70);
+
     ctx.fillText("fs", 80, 350, 70);
+    ctx.beginPath();
+    ctx.moveTo(80, 10);           
+    ctx.lineTo(80, 330);
+    ctx.setLineDash([5, 5]); 
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.closePath();
+
     ctx.fillText("2fs", 160, 350, 70);
+    ctx.beginPath();
+    ctx.moveTo(160, 10);           
+    ctx.lineTo(160, 330);
+    ctx.setLineDash([5, 5]); 
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.closePath();
+
     ctx.fillText("3fs", 240, 350, 70);
+    ctx.beginPath();
+    ctx.moveTo(240, 10);           
+    ctx.lineTo(240, 330);
+    ctx.setLineDash([5, 5]); 
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.closePath();
+
     ctx.fillText("4fs", 320, 350, 70);
+    ctx.beginPath();
+    ctx.moveTo(320, 10);           
+    ctx.lineTo(320, 330);
+    ctx.setLineDash([5, 5]); 
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.closePath();
+
     ctx.fillText("5fs", 400, 350, 70);
+    ctx.beginPath();
+    ctx.moveTo(400, 10);           
+    ctx.lineTo(400, 330);
+    ctx.setLineDash([5, 5]); 
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.closePath();
+
     ctx.fillText("6fs", 480, 350, 70);
+    ctx.beginPath();
+    ctx.moveTo(480, 10);           
+    ctx.lineTo(480, 330);
+    ctx.setLineDash([5, 5]); 
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.closePath();
+
     ctx.fillText("7fs", 560, 350, 70);
+    ctx.beginPath();
+    ctx.moveTo(560, 10);           
+    ctx.lineTo(560, 330);
+    ctx.setLineDash([5, 5]); 
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.closePath();
+ctx.restore();
     ctx.fillText("8fs", 640, 350, 70);
     ctx.closePath();
     
