@@ -17,48 +17,25 @@ let ctx = canvas.getContext('2d');
 let wave_frequency_span = document.getElementById("Fm4");
 let wave_amplitude_span = document.getElementById("Am4");
 let data = document.getElementById("dm4");
-// let unsampled_wave_checkbox = document.getElementById("unsampled_wave");
-// let sampled_points_checkbox = document.getElementById("sampled_points");
-// let staircase_wave_checkbox = document.getElementById("staircase_wave");
 let canvas_width = canvas.parentElement.clientWidth;
 let canvas_height = canvas.parentElement.clientHeight;
 let wave_amplitude_slider = document.getElementById("amplitude4");
 let wave_frequency_slider = document.getElementById("frequency4");
-
-
-/*
- * This function will draw a point at location x, y
- */
-// function drawPoint(x, y) {
-//     let radius = 3.0;
-//     ctx.beginPath();
-//     ctx.strokeStyle = "blue";
-//     ctx.stroke();
-//     ctx.fillStyle = 'black';
-//     ctx.lineWidth = 1;
-//     ctx.arc(x, y, radius*1.3, 0, 2 * Math.PI, false);
-//     ctx.fill();
-//     ctx.closePath();
-// }
-let line_start = 10;
-let line_end = 330;
-let orgx = 10;
-let orgy = 80;
 let ed;
-let x1=line_end,x2=line_start;
-let a=[1,1,1,1,0];
+let a=[1,1,1,1,0];//array
 let stp=10,edp=80;
-stp=orgx;
-edp=orgy;
 ed=edp;
 let b=a.length-1;
-var data_bit = document.getElementById('data_bit4');
-var val = data_bit.value;
+var data_bit = document.getElementById('data_bit'); //4
+let height=330;
+let amp=2;
+let x1=height,x2=height-amp;
 
-function base(){
+function unipolarrz(){
     stp=10,edp= +wave_frequency_slider.value;
     b=a.length-1;
-    x1=line_end,x2= +wave_amplitude_slider.value;
+   amp= +wave_amplitude_slider.value;
+   x1=height,x2=height-amp;
     ed=edp;
     if(a[0]==0){
         baseline();
@@ -195,8 +172,16 @@ function drawAxes() {
 
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("Amplitude", orgx + 10, line_start + 10, 90);
-    ctx.fillText("Time", canvas_width - 100, line_end + 20, 70);
+    ctx.fillText("Amplitude", 10 + 10, 10 + 10, 90);
+    ctx.fillText("Time", canvas_width - 100, 330 + 20, 70);
+    ctx.fillText("fs", 80, 350, 70);
+    ctx.fillText("2fs", 160, 350, 70);
+    ctx.fillText("3fs", 240, 350, 70);
+    ctx.fillText("4fs", 320, 350, 70);
+    ctx.fillText("5fs", 400, 350, 70);
+    ctx.fillText("6fs", 480, 350, 70);
+    ctx.fillText("7fs", 560, 350, 70);
+    ctx.fillText("8fs", 640, 350, 70);
     ctx.closePath();
     
 }
@@ -205,7 +190,7 @@ function drawAxes() {
 function drawGraph() {
     
     drawAxes();
-   base();
+   unipolarrz();
 }
 
 let size_set = false;
@@ -230,7 +215,6 @@ function draw() {
     wave_amplitude_span.innerText = wave_amplitude_slider.value + ' V';
     wave_frequency_span.innerText = wave_frequency_slider.value + ' Hz';
     data.innerText=data_bit.value;
-    orgy=wave_frequency_slider.value;
     drawGraph();
 }
 function graph(){
@@ -238,8 +222,8 @@ function graph(){
     $('#exampleModal3').modal('show');
     requestAnimationFrame(draw);
 }
-document.getElementById("buttons3").onclick = graph;
-function setupModal(event) {
-    $('#exampleModalCenter3').modal('show');
-}
-document.getElementById("button4").onclick = setupModal;
+document.getElementById("button4").onclick = graph; //3
+// function setupModal(event) {
+//     $('#exampleModalCenter').modal('show'); //3
+// }
+// document.getElementById("button4").onclick = setupModal;

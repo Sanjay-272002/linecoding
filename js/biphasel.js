@@ -21,29 +21,19 @@ let canvas_width = canvas.parentElement.clientWidth;
 let canvas_height = canvas.parentElement.clientHeight;
 let wave_amplitude_slider = document.getElementById("amplitude6");
 let wave_frequency_slider = document.getElementById("frequency6");
-
-
-let line_start = 10;
-let line_end = 330;
-let orgx = 10;
-let orgy = 40;
-let ed;
-//let x1=line_end,x2=line_start;
-let a=[1,0,1,0,1,1,0,0,1,0];
-let stp=0,edp=0;
-stp=orgx;
-edp=orgy;
-ed=edp;
-
-var data_bit = document.getElementById('data_bit6');
-var val = data_bit.value;
-let x1=line_end,x2=line_start;
+let a=[1,0,1];
+let stp=10,edp=40;
+let ed=edp;
+var data_bit = document.getElementById('data_bit'); //6
+let height =330;
+let amp=2;
+let x1=height,x2=height-amp;
 let b=a.length-1;
-function base(){
+function biphasel(){
     stp=10,edp= +wave_frequency_slider.value;
     ed=edp;
     b=a.length-1;
-    x1=line_end,x2= +wave_amplitude_slider.value;
+    x1=height,amp= +wave_amplitude_slider.value,x2=height-amp;
     if(a[0]==0){
         baseline();
         stp=edp;
@@ -203,8 +193,16 @@ function drawAxes() {
 
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("Amplitude", orgx + 10, line_start + 10, 90);
-    ctx.fillText("Time", canvas_width - 100, line_end + 20, 70);
+    ctx.fillText("Amplitude", 10+ 10, 10 + 10, 90);
+    ctx.fillText("Time", canvas_width - 100, 330 + 20, 70);
+    ctx.fillText("fs", 80, 350, 70);
+    ctx.fillText("2fs", 160, 350, 70);
+    ctx.fillText("3fs", 240, 350, 70);
+    ctx.fillText("4fs", 320, 350, 70);
+    ctx.fillText("5fs", 400, 350, 70);
+    ctx.fillText("6fs", 480, 350, 70);
+    ctx.fillText("7fs", 560, 350, 70);
+    ctx.fillText("8fs", 640, 350, 70);
     ctx.closePath();
     
 }
@@ -213,7 +211,7 @@ function drawAxes() {
 function drawGraph() {
     
     drawAxes();
-   base();
+   biphasel();
 }
 
 let size_set = false;
@@ -238,7 +236,6 @@ function draw() {
     wave_amplitude_span.innerText = wave_amplitude_slider.value + ' V';
     wave_frequency_span.innerText = wave_frequency_slider.value + ' Hz';
     data.innerText=data_bit.value;
-    orgy=wave_frequency_slider.value;
     drawGraph();
 }
 function graph(){
@@ -246,8 +243,8 @@ function graph(){
     $('#exampleModal5').modal('show');
     requestAnimationFrame(draw);
 }
-document.getElementById("buttons5").onclick = graph;
-function setupModal(event) {
-    $('#exampleModalCenter5').modal('show');
-}
-document.getElementById("button6").onclick = setupModal;
+document.getElementById("button6").onclick = graph; //5
+// function setupModal(event) {
+//     $('#exampleModalCenter').modal('show'); //5
+// }
+// document.getElementById("button6").onclick = setupModal;

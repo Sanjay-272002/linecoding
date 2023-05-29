@@ -22,7 +22,7 @@ let wave_frequency_slider = document.getElementById("frequency");
 let data_bit = document.getElementById('data_bit');
 let height=330;
 let orgx = 10;
-let orgy = 40;
+let orgy = 80;
 let ed=orgy;
 let ampt=3;
 let a= [0,0,0];
@@ -39,21 +39,21 @@ function drawAxes() {
 
     // Horizontal line
     ctx.moveTo(10, 330);
-    ctx.lineTo(canvas_width/3, 330);
+    ctx.lineTo(canvas_width, 330);
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.beginPath();
     // Vertical line
-    ctx.moveTo(canvas_width/2.5, 10);           
-    ctx.lineTo(canvas_width/2.5, 330);
-    ctx.strokeStyle = "black";
-    ctx.stroke();
+    // ctx.moveTo(canvas_width/2, 10);           
+    // ctx.lineTo(canvas_width/2, 330);
+    // ctx.strokeStyle = "black";
+    // ctx.stroke();
 
-    // Horizontal line
-    ctx.moveTo(canvas_width/2.5, 330);
-    ctx.lineTo(canvas_width - 50, 330);
-    ctx.strokeStyle = "black";
-    ctx.stroke();
+    // // Horizontal line
+    // ctx.moveTo(canvas_width/2, 330);
+    // ctx.lineTo(canvas_width - 50, 330);
+    // ctx.strokeStyle = "black";
+    // ctx.stroke();
 
     //Base line
     // ctx.moveTo(orgx, (line_start + line_end) / 2);
@@ -65,21 +65,21 @@ function drawAxes() {
     ctx.fillStyle = "black";
     ctx.fillText("Amplitude",  20, 20, 90);
     ctx.fillText("Time", canvas_width - 100, 350, 70);
-    ctx.fillText("fs", 40, 350, 70);
-    ctx.fillText("2fs", 80, 350, 70);
-    ctx.fillText("3fs", 120, 350, 70);
-    ctx.fillText("4fs", 160, 350, 70);
-    ctx.fillText("5fs", 200, 350, 70);
-    ctx.fillText("6fs", 240, 350, 70);
-    ctx.fillText("7fs", 280, 350, 70);
-    ctx.fillText("8fs", 320, 350, 70);
+    ctx.fillText("fs", 80, 350, 70);
+    ctx.fillText("2fs", 160, 350, 70);
+    ctx.fillText("3fs", 240, 350, 70);
+    ctx.fillText("4fs", 320, 350, 70);
+    ctx.fillText("5fs", 400, 350, 70);
+    ctx.fillText("6fs", 480, 350, 70);
+    ctx.fillText("7fs", 560, 350, 70);
+    ctx.fillText("8fs", 640, 350, 70);
     ctx.closePath();
     
 }
 function topline(){
     ctx.beginPath();
-    ctx.moveTo(orgx,height/ampt);
-    ctx.lineTo(orgy,height/ampt);
+    ctx.moveTo(orgx,height-ampt);
+    ctx.lineTo(orgy,height-ampt);
     ctx.stroke();
     ctx.strokeStyle="black";
     ctx.fillStyle="black";
@@ -96,14 +96,14 @@ function baseline(){
 function  onedrop(){
 
     ctx.beginPath();
-    ctx.moveTo(orgx,height/ampt);
-    ctx.lineTo(orgy,height/ampt);
+    ctx.moveTo(orgx,height-ampt);
+    ctx.lineTo(orgy,height-ampt);
     ctx.stroke();
     ctx.strokeStyle="black";
     ctx.closePath();
 
     ctx.beginPath();
-    ctx.moveTo(orgy,height/ampt);
+    ctx.moveTo(orgy,height-ampt);
     ctx.lineTo(orgy,height);
     ctx.stroke();
     ctx.strokeStyle="black";
@@ -122,7 +122,7 @@ function  zeroup(){
 
     ctx.beginPath()
     ctx.moveTo(orgy,height);
-    ctx.lineTo(orgy,height/ampt);
+    ctx.lineTo(orgy,height-ampt);
     ctx.stroke();
     ctx.strokeStyle="black";
     ctx.closePath();  
@@ -167,7 +167,7 @@ function nrzl(){
     }
 function drawGraph() {
     drawAxes();
-    //nrzl();
+    nrzl();
 }
 
 let size_set = false;
@@ -199,8 +199,8 @@ function graph(){
     $('#exampleModal').modal('show');
     requestAnimationFrame(draw);
 }
-document.getElementById("buttons").onclick = graph;
-function setupModal(event) {
-    $('#exampleModalCenter').modal('show');
-}
-document.getElementById("button1").onclick = setupModal;
+document.getElementById("button1").onclick = graph;
+// function setupModal(event) {
+//     $('#exampleModalCenter').modal('show');
+// }
+// document.getElementById("button1").onclick = setupModal;

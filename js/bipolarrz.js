@@ -25,7 +25,7 @@ let canvas_height = canvas.parentElement.clientHeight;
 let wave_amplitude_slider = document.getElementById("amplitude7");
 let wave_frequency_slider = document.getElementById("frequency7");
 let line_start = 10;
-let line_end = 330;
+let line_end = 320;
 let orgx = 10;
 let orgy = 80;
 let ed;
@@ -35,16 +35,16 @@ stp=orgx;
 edp=orgy;
 ed=edp;
 let b=a.length-1;
-var data_bit = document.getElementById('data_bit7');
+var data_bit = document.getElementById('data_bit'); //6
 var val = data_bit.value;
-let x1=(line_start + line_end) / 2,x2=10,x3=310;
+let x1=(line_start + line_end) / 2,x2=140,x3=180;
 let count=0;
 
 function base(){
     stp=10,edp= +wave_frequency_slider.value ,ed=edp;
     count=0;
     b=a.length-1;
-    x1=(line_start + line_end) / 2,x2=10,x3=310;
+    x1=(line_start + line_end) / 2,x2=140-(+wave_amplitude_slider.value),x3=190 + (+wave_amplitude_slider.value);
     if(a[0]==0){
         baseline();
         stp=edp;
@@ -231,6 +231,14 @@ function drawAxes() {
     ctx.fillStyle = "black";
     ctx.fillText("Amplitude", orgx + 10, line_start + 10, 90);
     ctx.fillText("Time", canvas_width - 100, line_end + 20, 70);
+    ctx.fillText("fs", 80, 350, 70);
+    ctx.fillText("2fs", 160, 350, 70);
+    ctx.fillText("3fs", 240, 350, 70);
+    ctx.fillText("4fs", 320, 350, 70);
+    ctx.fillText("5fs", 400, 350, 70);
+    ctx.fillText("6fs", 480, 350, 70);
+    ctx.fillText("7fs", 560, 350, 70);
+    ctx.fillText("8fs", 640, 350, 70);
     ctx.closePath();
     
 }
@@ -272,8 +280,8 @@ function graph(){
     $('#exampleModal6').modal('show');
     requestAnimationFrame(draw);
 }
-document.getElementById("buttons6").onclick = graph;
-function setupModal(event) {
-    $('#exampleModalCenter6').modal('show');
-}
-document.getElementById("button7").onclick = setupModal;
+document.getElementById("button7").onclick = graph; //6
+// function setupModal(event) {
+//     $('#exampleModalCenter').modal('show'); //6
+// }
+// document.getElementById("button7").onclick = setupModal;

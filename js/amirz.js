@@ -3,8 +3,6 @@
  * Refer to this site https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
  */
 let canvas = document.getElementById('canvas5');
-
-
 /*
  * ctx stands for context - Every drawing function call is based on this context
  * The below comment is a special type of comment which will inform VSCode about the type
@@ -20,30 +18,22 @@ let canvas_width = canvas.parentElement.clientWidth;
 let canvas_height = canvas.parentElement.clientHeight;
 let wave_amplitude_slider = document.getElementById("amplitude5");
 let wave_frequency_slider = document.getElementById("frequency5");
-
-
-
 let line_start = 10;
-let line_end = 330;
-let orgx = 10;
-let orgy = 80;
+let line_end = 320;
 let ed;
 let a=[1,1,1,1,0];
 let stp=10,edp=80;
-stp=orgx;
-edp=orgy;
 ed=edp;
 let b=a.length-1;
-var data_bit = document.getElementById('data_bit5');
-var val = data_bit.value;
-let x1=(line_start + line_end) / 2,x2=10,x3=310;
+var data_bit = document.getElementById('data_bit'); //5
+let height=330;
+let x1=(line_start + line_end) / 2,x2=140,x3=180;
 let count=0;
-
-function base(){
+function amirz(){
     stp=10;
     edp= +wave_frequency_slider.value;
     ed=edp;
-    x1=(line_start + line_end) / 2,x2=30,x3=280+30;
+    x1=(line_start + line_end) / 2,x2=140-(+wave_amplitude_slider.value),x3=190 + (+wave_amplitude_slider.value);
     count=0;
     b=a.length-1;
     if(a[0]==0){
@@ -188,26 +178,34 @@ function drawAxes() {
     ctx.beginPath();
     // Vertical line
     ctx.moveTo(10, 10);           
-    ctx.lineTo(10, 330);
+    ctx.lineTo(10, 320);
     ctx.strokeStyle = "black";
     ctx.stroke();
 
     // Horizontal line
-    ctx.moveTo(10, 330);
-    ctx.lineTo(canvas_width - 50, 330);
+    ctx.moveTo(10, 320);
+    ctx.lineTo(canvas_width - 50, 320);
     ctx.strokeStyle = "black";
     ctx.stroke();
 
    // Base line
-    ctx.moveTo(orgx, (line_start + line_end) / 2);
-    ctx.lineTo(canvas_width - 50, (line_start + line_end) / 2);
+    ctx.moveTo(10, (line_start + 320) / 2);
+    ctx.lineTo(canvas_width - 50, (line_start + 320) / 2);
     ctx.strokeStyle = "black";
     ctx.stroke();
 
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("Amplitude", orgx + 10, line_start + 10, 90);
-    ctx.fillText("Time", canvas_width - 100, line_end + 20, 70);
+    ctx.fillText("Amplitude", 10 + 10, line_start + 10, 90);
+    ctx.fillText("Time", canvas_width - 100, 320 + 20, 70);
+    ctx.fillText("fs", 80, 350, 70);
+    ctx.fillText("2fs", 160, 350, 70);
+    ctx.fillText("3fs", 240, 350, 70);
+    ctx.fillText("4fs", 320, 350, 70);
+    ctx.fillText("5fs", 400, 350, 70);
+    ctx.fillText("6fs", 480, 350, 70);
+    ctx.fillText("7fs", 560, 350, 70);
+    ctx.fillText("8fs", 640, 350, 70);
     ctx.closePath();
     
 }
@@ -216,7 +214,7 @@ function drawAxes() {
 function drawGraph() {
     
     drawAxes();
-   base();
+  amirz();
 }
 
 let size_set = false;
@@ -241,7 +239,6 @@ function draw() {
     wave_amplitude_span.innerText = wave_amplitude_slider.value + ' V';
     wave_frequency_span.innerText = wave_frequency_slider.value + ' Hz';
     data.innerText=data_bit.value;
-    orgy=wave_frequency_slider.value;
     drawGraph();
 }
 function graph(){
@@ -249,8 +246,8 @@ function graph(){
     $('#exampleModal4').modal('show');
     requestAnimationFrame(draw);
 }
-document.getElementById("buttons4").onclick = graph;
-function setupModal(event) {
-    $('#exampleModalCenter4').modal('show');
-}
-document.getElementById("button5").onclick = setupModal;
+document.getElementById("button5").onclick = graph; //4
+// function setupModal(event) {
+//     $('#exampleModalCenter').modal('show'); //4
+// }
+// document.getElementById("button5").onclick = setupModal;

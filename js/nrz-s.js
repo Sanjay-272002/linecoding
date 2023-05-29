@@ -14,49 +14,35 @@ var canvas = document.getElementById('canvas3');
  */
 /** @type {CanvasRenderingContext2D} */
 var ctx2 = canvas.getContext('2d');
-
-
 var wave_frequency_span2 = document.getElementById("Fm1");
 var wave_amplitude_span2 = document.getElementById("Am1");
 var data2 = document.getElementById("dm1");
-// var unsampled_wave_checkbox = document.getElementById("unsampled_wave");
-// var sampled_points_checkbox = document.getElementById("sampled_points");
-// var staircase_wave_checkbox = document.getElementById("staircase_wave");
-
 var canvas_width2 = canvas.parentElement.clientWidth;
 var canvas_height2 = canvas.parentElement.clientHeight;
-
-var orgx2 = 15;
-var orgy2 = 185;
-
 var wave_amplitude_slider2 = document.getElementById("amplitude1");
 var wave_frequency_slider2 = document.getElementById("frequency1");
-
-
-
-
-
-
-/*
- * This function will draw c point at location x, y
- */
-var line_start2 = 20;
-var line_end2 = 330;
-
+var c=[1,0,1,0];//array
+let x3=0;
+var stp1=10,edp1=80;
+var ed1=edp1;
+let height=330;
+let amp=2;
+var xs1=height,xs2=height-amp;
+var data_bit1 = document.getElementById('data_bit'); //1
 
 // Draws the axes for the graph
 function drawAxesns() {
 
     ctx2.beginPath();
     // Vertical line
-    ctx2.moveTo(15, line_start2);
-    ctx2.lineTo(15, line_end2);
+    ctx2.moveTo(10, 10);
+    ctx2.lineTo(10, 330);
     ctx2.strokeStyle = "black";
     ctx2.stroke();
 
     // Horizontal line
-    ctx2.moveTo(15, line_end2);
-    ctx2.lineTo(canvas_width2 - 50, line_end2);
+    ctx2.moveTo(10, 330);
+    ctx2.lineTo(canvas_width2 - 50, 330);
     ctx2.strokeStyle = "black";
     ctx2.stroke();
 
@@ -68,29 +54,26 @@ function drawAxesns() {
 
     ctx2.font = "20px Arial";
     ctx2.fillStyle = "black";
-    ctx2.fillText("Amplitude", orgx2 + 10, line_start2 + 10, 90);
-    ctx2.fillText("Time", canvas_width2 - 100, line_end2 + 20, 70);
+    ctx2.fillText("Amplitude", 15 + 10, 10 + 10, 90);
+    ctx2.fillText("Time", canvas_width2 - 100, 330 + 20, 70);
+    ctx2.fillText("fs", 80, 350, 70);
+    ctx2.fillText("2fs", 160, 350, 70);
+    ctx2.fillText("3fs", 240, 350, 70);
+    ctx2.fillText("4fs", 320, 350, 70);
+    ctx2.fillText("5fs", 400, 350, 70);
+    ctx2.fillText("6fs", 480, 350, 70);
+    ctx2.fillText("7fs", 560, 350, 70);
+    ctx2.fillText("8fs", 640, 350, 70);
     ctx2.closePath();
-
 }
-var xs1=line_end2,xs2=line_start2;
-var c=[1,0,1,0];
-let x3=0;
-var stp1=10,edp1=80;
-stp1=orgx2;
-edp1=orgy2;
-var ed1=edp1;
-var data_bit1 = document.getElementById('data_bit1');
-var val1 = data_bit1.value;
+
 function basens(){
     var b=c.length-1;
-    // console.log(orgx2);
-     //console.log(orgy2);
-     //console.log(ed1);
      stp1 = 10;
      edp1 = +wave_frequency_slider2.value;
      ed1=edp1;
-     xs1=line_end2, xs2= +wave_amplitude_slider2.value;
+     amp= +wave_amplitude_slider2.value;
+     xs1=height, xs2= height-amp;
     if(+c[0]==0){
             baselinens();
             stp1=edp1;
@@ -255,10 +238,10 @@ function graphns(){
      $('#exampleModal1').modal('show');
      requestAnimationFrame(drawns);
  }
- document.getElementById("buttons1").onclick = graphns;
-function setupModalns(event) {
-    $('#exampleModalCenter1').modal('show');
-}
+ document.getElementById("button3").onclick = graphns; //1
+// function setupModalns(event) {
+//     $('#exampleModalCenter').modal('show'); //1
+// }
 
 
-document.getElementById("button3").onclick = setupModalns;
+// document.getElementById("button3").onclick = setupModalns;

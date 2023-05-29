@@ -7,12 +7,37 @@
 html{
     font-size: 62.5%;
 }
-
-.selection{
-    display: flex;
+.title{
+    margin-top: 50px;
+    font-weight: 800;
+    text-decoration: underline;
+    margin-left: -10px;
+}
+.types .selection{
+    display: none;
     align-items: center;
     justify-content: center;
     min-height: 70vh;
     font-size: 20px;
     font-weight: bolder;
+}
+.display .setup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    font-size: 20px;
+
+}
+.display.active .setup{
+   display: none;
+}
+.types.active .selection{
+    display: flex;
+}
+.types .graph{
+    font-size: 15px;
+}
+button{
+    padding: 10px 15px;
 }
