@@ -61,9 +61,9 @@ button{
 .btn-primary{
     bottom : 2rem !important;
     font-weight: 600 !important;
-    font-size: 15px;
+    font-size: 14px;
     color: whitesmoke !important;
-    padding: 20px 40px;
+    padding: 0px 40px;
     text-align: center;
     background-color: black !important;
     margin: 5px 5px;
