@@ -1,5 +1,20 @@
+/*
+ * This simulation uses the HTML5 canvas API.
+ * Refer to this site https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+ */
+let canvas = document.getElementById('canvas2');
 
+
+/*
+ * ctx stands for context - Every drawing function call is based on this context
+ * The below comment is a special type of comment which will inform VSCode about the type
+ * of the variable. Here ctx is of type *CanvasRenderingContext2D*. This is optional adding
+ * this will let have better autocomplete features. Without this you won't have proper
+ * autocompletion when you do *ctx.*
+ */
+/** @type {CanvasRenderingContext2D} */
 let ctx = canvas.getContext('2d');
+
 let wave_frequency_span1 = document.getElementById("Fm2");
 let wave_amplitude_span1 = document.getElementById("Am2");
 let data = document.getElementById("dm2");
@@ -7,8 +22,6 @@ let canvas_width = canvas.parentElement.clientWidth;
 let canvas_height = canvas.parentElement.clientHeight;
 let wave_amplitude_slider1 = document.getElementById("amplitude2");
 let wave_frequency_slider1 = document.getElementById("frequency2");
-const modal = document.getElementById("exampleModal2");
-const downloadButton = document.getElementById("downloadButton2");
 let height=330;
 let ampt=2;
 let x1;
@@ -227,10 +240,22 @@ function graphnm(){
     //  draw()
  }
  document.getElementById("button2").onclick = graphnm; //2
+// function setupModalnm(event) {
+//     $('#exampleModalCenter').modal('show');//2
+// }
 
+// document.getElementById("button2").onclick = setupModalnm;
+const modal = document.getElementById("exampleModal2");
+const downloadButton = document.getElementById("downloadButton2");
+
+// Add a click event listener to the download button
 downloadButton.addEventListener("click", function () {
+  // Capture a screenshot of the modal's content using html2canvas
   html2canvas(modal).then(function (canvas) {
+    // Convert the canvas to a data URL
     const dataURL = canvas.toDataURL("image/png");
+
+    // Create a download link and trigger the download
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = "modal_screenshot.png";
