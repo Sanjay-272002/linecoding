@@ -4,9 +4,6 @@
     box-sizing:border-box ;
 }
 
-html{
-    font-size: 62.5%;
-}
 .title{
     margin-top: 50px;
     font-weight: bolder;
@@ -35,14 +32,14 @@ html{
     
 
 }
-.display .setup{
+/* .display .setup{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80vh;
     font-size: 20px;
 
-}
+} */
 .display.active .setup{
    display: flex;
 }
@@ -105,3 +102,4 @@ button{
     text-decoration: none;
     cursor: pointer;
   }
+  

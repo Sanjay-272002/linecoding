@@ -1,29 +1,15 @@
-/*
- * This simulation uses the HTML5 canvas API.
- * Refer to this site https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
- */
+
 let canvas = document.getElementById('canvas7');
-
-
-/*
- * ctx stands for context - Every drawing function call is based on this context
- * The below comment is a special type of comment which will inform VSCode about the type
- * of the variable. Here ctx is of type *CanvasRenderingContext2D*. This is optional adding
- * this will let have better autocomplete features. Without this you won't have proper
- * autocompletion when you do *ctx.*
- 
-/** @type {CanvasRenderingContext2D} */
 let ctx = canvas.getContext('2d');
 let wave_frequency_span = document.getElementById("Fm7");
 let wave_amplitude_span = document.getElementById("Am7");
 let data = document.getElementById("dm7");
-// let unsampled_wave_checkbox = document.getElementById("unsampled_wave");
-// let sampled_points_checkbox = document.getElementById("sampled_points");
-// let staircase_wave_checkbox = document.getElementById("staircase_wave");
 let canvas_width = canvas.parentElement.clientWidth;
 let canvas_height = canvas.parentElement.clientHeight;
 let wave_amplitude_slider = document.getElementById("amplitude7");
 let wave_frequency_slider = document.getElementById("frequency7");
+const modal = document.getElementById("exampleModal6");
+const downloadButton = document.getElementById("downloadButton6");
 let line_start = 10;
 let line_end = 320;
 let orgx = 10;
@@ -281,7 +267,14 @@ function graph(){
     requestAnimationFrame(draw);
 }
 document.getElementById("button7").onclick = graph; //6
-// function setupModal(event) {
-//     $('#exampleModalCenter').modal('show'); //6
-// }
-// document.getElementById("button7").onclick = setupModal;
+
+
+downloadButton.addEventListener("click", function () {
+  html2canvas(modal).then(function (canvas) {
+    const dataURL = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = dataURL;
+    link.download = "modal_screenshot.png";
+    link.click();
+  });
+});

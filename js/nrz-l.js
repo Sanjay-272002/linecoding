@@ -263,3 +263,15 @@ document.getElementById("button1").onclick = graph;
 //     $('#exampleModalCenter').modal('show');
 // }
 // document.getElementById("button1").onclick = setupModal;
+const modal = document.getElementById("exampleModal");
+const downloadButton = document.getElementById("downloadButton");
+
+downloadButton.addEventListener("click", function () {
+  html2canvas(modal).then(function (canvas) {
+    const dataURL = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = dataURL;
+    link.download = "modal_screenshot.png";
+    link.click();
+  });
+});

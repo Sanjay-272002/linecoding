@@ -1,18 +1,5 @@
-/*
- * This simulation uses the HTML5 canvas API.
- * Refer to this site https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
- */
+
 let canvas = document.getElementById('canvas4');
-
-
-/*
- * ctx stands for context - Every drawing function call is based on this context
- * The below comment is a special type of comment which will inform VSCode about the type
- * of the variable. Here ctx is of type *CanvasRenderingContext2D*. This is optional adding
- * this will let have better autocomplete features. Without this you won't have proper
- * autocompletion when you do *ctx.*
- 
-/** @type {CanvasRenderingContext2D} */
 let ctx = canvas.getContext('2d');
 let wave_frequency_span = document.getElementById("Fm4");
 let wave_amplitude_span = document.getElementById("Am4");
@@ -21,6 +8,8 @@ let canvas_width = canvas.parentElement.clientWidth;
 let canvas_height = canvas.parentElement.clientHeight;
 let wave_amplitude_slider = document.getElementById("amplitude4");
 let wave_frequency_slider = document.getElementById("frequency4");
+const modal = document.getElementById("exampleModal3");
+const downloadButton = document.getElementById("downloadButton3");
 let ed;
 let a=[1,1,1,1,0];//array
 let stp=10,edp=80;
@@ -223,7 +212,13 @@ function graph(){
     requestAnimationFrame(draw);
 }
 document.getElementById("button4").onclick = graph; //3
-// function setupModal(event) {
-//     $('#exampleModalCenter').modal('show'); //3
-// }
-// document.getElementById("button4").onclick = setupModal;
+
+downloadButton.addEventListener("click", function () {
+  html2canvas(modal).then(function (canvas) {
+    const dataURL = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = dataURL;
+    link.download = "modal_screenshot.png";
+    link.click();
+  });
+});
